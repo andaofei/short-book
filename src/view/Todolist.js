@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import PropTypes from 'prop-types'
 class Todolist extends Component {
     constructor(props) {
         super(props)
@@ -21,4 +21,16 @@ class Todolist extends Component {
     }
 }
 
+Todolist.propTypes = {
+    item: PropTypes.string,
+    deletItem: PropTypes.func,
+    index: PropTypes.number
+    // index: PropTypes.number.isRequired // 必填
+}
+
+Todolist.defultProps = {
+    item: '1',
+    deletItem: '2',
+    index: 3 // 必填
+}
 export default Todolist
