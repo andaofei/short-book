@@ -11,6 +11,12 @@ class Todolist extends Component {
         // console.log(this.props.deletItem)
         deletItem(index)
     }
+    componentWillReceiveProps() {
+        console.log('qqqqq')
+    }
+    componentWillUnmount() {
+        console.log('willunmoount')
+    }
     render() {
         const {item} = this.props;
         return (
@@ -22,7 +28,7 @@ class Todolist extends Component {
 }
 
 Todolist.propTypes = {
-    item: PropTypes.string,
+    item: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     deletItem: PropTypes.func,
     index: PropTypes.number
     // index: PropTypes.number.isRequired // 必填

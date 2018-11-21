@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react' // 占位符
 import './App.css'
 import Todolist from './view/Todolist'
-
+import axios from 'axios'
 class App extends Component {
     // 构造函数
     constructor(props) {
@@ -16,7 +16,8 @@ class App extends Component {
     }
 
     handleInputChange(e) {
-        const value = e.target.value
+        // const value = e.target.value
+        const value = this.inputRef.value
         // console.log(e.target.value)
         this.setState(() => ({
             inputValue: value
@@ -46,11 +47,22 @@ class App extends Component {
         this.setState((prevState) => {
             const listNew = [...prevState.list]
             listNew.splice(index, 1)
-            return {listNew}
+            // console.log(listNew)
+            return {list: listNew}
         })
         // this.setState({
         //     list: listNew
         // })
+    }
+
+    componentDidMount() {
+        axios.get('/api/todolist')
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
@@ -60,6 +72,9 @@ class App extends Component {
                     <input type="text"
                            value={this.state.inputValue}
                            onChange={this.handleInputChange}
+                           ref={(inputRef) => {
+                               this.inputRef = inputRef
+                           }}
                     />
                     <button onClick={this.handleSubmit}>提交</button>
                 </div>
