@@ -12,10 +12,10 @@ class Todolist extends Component {
         deletItem(index)
     }
     componentWillReceiveProps() {
-        console.log('qqqqq')
+        // console.log('qqqqq')
     }
     componentWillUnmount() {
-        console.log('willunmoount')
+        // console.log('willunmoount')
     }
     render() {
         const {item} = this.props;

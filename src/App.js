@@ -10,11 +10,14 @@ class App extends Component {
     constructor(props) {
         super(props)
         console.log(store)
+
         this.state = store.getState()
+
         this.handleInputChange = this.handleInputChange.bind(this)
         this.hanleStoreChange = this.hanleStoreChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+
         store.subscribe(this.hanleStoreChange)
         // this.state = {
         //     inputValue: '',
@@ -24,27 +27,19 @@ class App extends Component {
 
      handleInputChange(e) {
         // const values = e.target.value
-        // const action = {
-        //     type: 'changeType',
-        //     value: e.target.value
-        // }
-        // store.dispatch(action)
         // const value = this.inputRef.value
-        console.log(e.target.value)
-        // this.setState(() => ({
-        //     inputValue: value
-        // }))
+        // console.log(e.target.value)
         // this.setState({
         //     inputValue: e.target.value
         // })
+         const action = {
+             type: 'changeType',
+             value: e.target.value
+         }
+         store.dispatch(action)
     }
 
     handleSubmit() {
-        // console.log(this.state.inputValue)
-        // this.setState({
-        //     list: [...this.state.list, this.state.inputValue],
-        //     inputValue: ''
-        // })
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
@@ -53,21 +48,16 @@ class App extends Component {
 
     handleDelete(index) {
         // immutable
-        // console.log(index)
-        // const listNew = [...this.state.list]
-        // listNew.splice(index, 1)
         this.setState((prevState) => {
             const listNew = [...prevState.list]
             listNew.splice(index, 1)
-            // console.log(listNew)
             return {list: listNew}
         })
-        // this.setState({
-        //     list: listNew
-        // })
     }
 
     hanleStoreChange() {
+        console.log(store.getState())
+        this.setState(store.getState())
     }
 
     componentDidMount() {
