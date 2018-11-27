@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react' // 占位符
 import './App.css';
 import Todolist from './view/Todolist';
-import axios from 'axios';
+// import axios from 'axios';
 import {Button, Input} from 'antd';
 import store from './redux';
-
+import {getTodoList, initListAction, getInitList} from './redux/actionCreators'
 class App extends Component {
     // 构造函数
     constructor(props) {
@@ -28,7 +28,7 @@ class App extends Component {
      handleInputChange(e) {
         // const values = e.target.value
         // const value = this.inputRef.value
-        // console.log(e.target.value)
+        console.log(e.target.value)
         // this.setState({
         //     inputValue: e.target.value
         // })
@@ -61,13 +61,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/todolist')
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        // const action = getTodoList()
+        const action = getInitList()
+        store.dispatch(action)
     }
 
     render() {

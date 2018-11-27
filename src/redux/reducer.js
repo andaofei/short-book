@@ -1,6 +1,6 @@
 const defaultState = {
-    inputValue: '1212',
-    list: [1, 2, 3]
+    inputValue: '',
+    list: []
 }
 // reducer 只能接受 state不能改变
 export default (state = defaultState, action) => {
@@ -10,6 +10,11 @@ export default (state = defaultState, action) => {
         newState.inputValue = action.value
         return newState
     }
-    console.log(state, action)
+    if (action.type === 'get_init_list') {
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list = action.value
+        return newState
+    }
+    // console.log(state, action)
     return state;
 }
