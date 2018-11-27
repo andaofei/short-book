@@ -1,8 +1,8 @@
 const defaultState = {
-    inputValue: '',
-    list: []
+    inputValue: '11111',
+    list: [1,2,3]
 }
-// reducer 只能接受 state不能改变
+// reducer 只能接受 state 不能改变
 export default (state = defaultState, action) => {
     console.log(action)
     if (action.type === 'changeType') {
@@ -15,6 +15,16 @@ export default (state = defaultState, action) => {
         newState.list = action.value
         return newState
     }
-    // console.log(state, action)
+    if (action.type === 'add_item') {
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list.push(newState.inputValue)
+        newState.inputValue = ''
+        return newState
+    }
+    if (action.type === 'delete_item') {
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list.splice(action.value, 1)
+        return newState
+    }
     return state;
 }
