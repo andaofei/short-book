@@ -8,14 +8,6 @@ function* getInitList() {
         const action = initListAction(res.data)
         console.log(action)
         yield put(action)
-        // .then(res => {
-        //     const action = initListAction(res.data)
-        //     console.log(action)
-        //     put(action)
-        // })
-        // .catch((err) => {
-        //     console.log(err)
-        // })
 }
 
 function* mySaga() {
